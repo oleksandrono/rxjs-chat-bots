@@ -1,9 +1,15 @@
 import * as chat from './chat';
 import './echo-bot';
 
-chat.newMessage$
-  .map(m => m.print())
-  .subscribe(console.log);
+chat.messages$
+  .subscribe(printAll);
+
+function printAll(messages: chat.Message[]) {
+  console.clear();
+  messages.forEach((m) => {
+    console.log(m.print());
+  })
+}
 
 declare global {
   interface Window { chat: any }

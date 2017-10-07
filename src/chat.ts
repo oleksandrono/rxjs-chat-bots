@@ -14,6 +14,10 @@ export const incommingMessage$: Subject<Message> = new Subject();
 export const newMessage$: Observable<Message> =
   sentMessage$.merge(incommingMessage$);
 
+export const messages$: Observable<Message[]> = 
+  newMessage$
+    .scan((messages, m) => [...messages, m], []);
+
 export function send(message: string) {
   sentMessage$.next(new Message('user', message));
 }
