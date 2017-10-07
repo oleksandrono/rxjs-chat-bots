@@ -1,6 +1,7 @@
 import * as chat from './chat';
+import './echo-bot';
 
-chat.sentMessage$
+chat.newMessage$
   .map(m => m.print())
   .subscribe(console.log);
 
@@ -9,4 +10,3 @@ declare global {
 }
 
 window.chat = chat;
-
