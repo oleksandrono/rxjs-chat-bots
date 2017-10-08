@@ -1,5 +1,6 @@
 import * as chat from './chat';
 import './echo-bot';
+import './weather-bot';
 
 chat.messages$
   .subscribe(printAll);
