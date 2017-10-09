@@ -1,5 +1,17 @@
 import { newMessage$, Message, send } from './chat';
 import { Observable } from 'rxjs/Observable';
+import { registry, Bot } from './bot';
+
+const botListEl = document.querySelector('dl');
+
+registry.explore({
+  header(text: string) {
+    document.querySelector('h2').innerText = text;
+  },
+  describe(b: Bot) {
+    botListEl.innerHTML += `<dt>@${b.name}</dt><dd>${b.description}</dd>`;
+  }
+});
 
 const messageListEl: Element = document.querySelector('#messages');
 const formEl: HTMLFormElement = document.querySelector('#message-entry') as HTMLFormElement; 

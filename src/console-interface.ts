@@ -1,6 +1,4 @@
 import * as chat from './chat';
-import './echo-bot';
-import './weather-bot';
 import { registry, Bot } from './bot';
 
 showIntro();
