@@ -1,15 +1,8 @@
-import { sentMessage$, incommingMessage$, Message } from './chat';
-import { mention, registry } from './bot';
+import { registry, Bot } from './bot';
 
-export const ECHO_BOT = 'echo';
-
-registry.addBot({
-  name: ECHO_BOT,
+export const ECHO_BOT: Bot = {
+  name: 'echo',
   description: 'Repeats your message after 1 second delay.'
-});
+}
 
-sentMessage$
-  .filter(mention(ECHO_BOT))
-  .map(m => new Message(ECHO_BOT, m.text))
-  .delay(1000)
-  .subscribe(incommingMessage$);
+registry.addBot(ECHO_BOT, m => m.delay(1000));
