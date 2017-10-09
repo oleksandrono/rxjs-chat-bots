@@ -1,7 +1,12 @@
 import { sentMessage$, incommingMessage$, Message } from './chat';
-import { mention } from './bot';
+import { mention, registry } from './bot';
 
 export const ECHO_BOT = 'echo';
+
+registry.addBot({
+  name: ECHO_BOT,
+  description: 'Repeats your message after 1 second delay.'
+});
 
 sentMessage$
   .filter(mention(ECHO_BOT))
