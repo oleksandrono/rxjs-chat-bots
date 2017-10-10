@@ -26,7 +26,7 @@ export const registry = {
     return [...bots];
   },
   explore(ui: RegistryUI) {
-    ui.header('Metion bot name in message to trigger it.');
+    ui.header('Mention bot name in message to trigger it.');
     bots.forEach(b => ui.describe(b));
   }
 }
