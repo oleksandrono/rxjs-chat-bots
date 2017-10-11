@@ -40,9 +40,19 @@ function subscribeBot(bot: Bot, reply: Reply) {
     .subscribe(incommingMessage$);
 }
 
+export function hasWord(word: string): (message: string) => boolean {
+  return (m: string) => { 
+    return testForWord(m, word);
+  }
+}
+
 export function mention(name: string): (m: Message) => boolean {
   let token = '@' + name;
   return (m: Message) => { 
-    return m.text.split(/\s+/).indexOf(token) > -1;
+    return testForWord(m.text, token);
   }
+}
+
+function testForWord(message: string, word: string) {
+  return message.split(/\s+/).indexOf(word) > -1;
 }
