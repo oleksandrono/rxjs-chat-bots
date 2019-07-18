@@ -1,4 +1,4 @@
-import { registry, Bot } from './bot';
+import { registry, Bot } from '../bot';
 import { delay } from 'rxjs/operators';
 
 export const ECHO_BOT: Bot = {

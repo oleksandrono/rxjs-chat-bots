@@ -1,4 +1,4 @@
-import { registry, Bot } from './bot';
+import { registry, Bot } from '../bot';
 import { currentWeather, WeatherConditions } from './weather.service';
 import { pipe } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';

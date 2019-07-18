@@ -1,7 +1,7 @@
 import { Observable, interval, merge } from 'rxjs';
 import { filter, map, switchMap, delay, takeUntil } from 'rxjs/operators';
 
-import { registry, Bot, hasWord } from './bot';
+import { registry, Bot, hasWord } from '../bot';
 
 export const JOFFREY_BOT: Bot = {
   name: 'joffrey',

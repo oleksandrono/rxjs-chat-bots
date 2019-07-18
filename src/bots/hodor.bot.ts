@@ -1,7 +1,7 @@
 import { Observable, from, interval } from 'rxjs';
 import { switchMap, zip, map } from 'rxjs/operators';
 
-import { registry, Bot, Reply } from './bot';
+import { registry, Bot, Reply } from '../bot';
 import { hodorYell } from './hodor-yell';
 
 export const HODOR_BOT: Bot = {
