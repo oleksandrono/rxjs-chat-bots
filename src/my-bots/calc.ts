@@ -1,6 +1,6 @@
 import { registry, Bot } from '../bot';
 import {Observable} from 'rxjs';
-import {map, scan} from 'rxjs/operators';
+import {map, delay, scan} from 'rxjs/operators';
 
 export const CALC_BOT: Bot = {
   name: 'add',

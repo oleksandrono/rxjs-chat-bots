@@ -1,6 +1,6 @@
 import { registry, Bot } from '../bot';
 import {interval, Observable, of} from 'rxjs';
-import {map, reduce, switchMap} from "rxjs/operators";
+import {map, delay, reduce, switchMap} from "rxjs/operators";
 
 export const DANY_BOT: Bot = {
   name: 'dany',
@@ -15,6 +15,7 @@ function QueenNeedLove (message$: Observable<string>): Observable<string> {
     switchMap(()=>interval(1500).pipe(
       map(i => i % 2 === 1 ? 'Queen need your love' : 'I am a queen')
       )
-    )
+    ),
+    delay(100)
   );
 }
