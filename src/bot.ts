@@ -1,5 +1,6 @@
 import { Message, sentMessage$, incommingMessage$ } from './chat';
-import { Observable } from 'rxjs';
+import { OperatorFunction } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 const bots: Bot[] = new Array<Bot>();
 
@@ -8,9 +9,7 @@ export interface Bot {
   description: string
 }
 
-export interface Reply {
-  (message$: Observable<string>): Observable<string>
-}
+export interface Reply extends OperatorFunction<string, string> {};
 
 export interface RegistryUI {
   header: (text: string) => void
@@ -32,12 +31,12 @@ export const registry = {
 }
 
 function subscribeBot(bot: Bot, reply: Reply) {
-  let message$ = sentMessage$
-    .filter(mention(bot.name))
-    .map(m => m.text);
-  reply(message$)
-    .map(m => new Message(bot.name, m))
-    .subscribe(incommingMessage$);
+  sentMessage$.pipe(
+    filter(mention(bot.name)),
+    map(m => m.text),
+    reply,
+    map(m => new Message(bot.name, m))
+  ).subscribe(incommingMessage$)
 }
 
 export function hasWord(word: string): (message: string) => boolean {

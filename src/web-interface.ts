@@ -1,5 +1,5 @@
 import { newMessage$, Message, send } from './chat';
-import { Observable } from 'rxjs/Observable';
+import { fromEvent } from 'rxjs';
 import { registry, Bot } from './bot';
 
 const botListEl = document.querySelector('dl');
@@ -26,7 +26,7 @@ function appendMessage(m: Message) {
 newMessage$
   .subscribe(appendMessage);
 
-Observable.fromEvent<Event>(formEl, 'submit')
+fromEvent<Event>(formEl, 'submit')
   .subscribe(e => {
     e.preventDefault();
     send(messageInputEl.value)
