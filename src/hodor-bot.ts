@@ -1,6 +1,7 @@
-import { Observable } from 'rxjs';
+import { Observable, from, interval } from 'rxjs';
+import { switchMap, zip, map } from 'rxjs/operators';
 
-import { registry, Bot } from './bot';
+import { registry, Bot, Reply } from './bot';
 import { hodorYell } from './hodor-yell';
 
 export const HODOR_BOT: Bot = {
@@ -8,10 +9,11 @@ export const HODOR_BOT: Bot = {
   description: 'Holds the door.'
 };
 
-registry.addBot(HODOR_BOT, m => m.switchMap(holdTheDoor));
+registry.addBot(HODOR_BOT, switchMap(holdTheDoor) as Reply);
 
 function holdTheDoor(): Observable<string> {
-  return Observable.from(hodorYell)
-    .zip(Observable.interval(2000))
-    .map(z => z[0]);
+  return from(hodorYell).pipe(
+    zip(interval(2000)),
+    map<Array<any>, string>(z => z[0])
+  );
 }
