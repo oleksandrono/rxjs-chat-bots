@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/es6-promise": "0.0.33",
     "html-webpack-plugin": "^2.30.1",
     "ts-loader": "^2.3.7",
     "typescript": "^3.5",
